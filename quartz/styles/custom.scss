@@ -1,3 +1,12 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+a.contact-link .external-icon {
+  display: none;
+}
+
+a.contact-link {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 24px;
+}
