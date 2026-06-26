@@ -214,7 +214,8 @@ plugins:
       title: Recent Notes
       limit: 5
       linkToMore: false
-      showTags: true
+      showTags: false
+      hideTagPages: true
     layout:
       position: left
       priority: 25
