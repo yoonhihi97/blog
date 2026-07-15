@@ -14,3 +14,12 @@ a.contact-link {
 .recent-notes .tags {
   display: none;
 }
+
+.sidebar .explorer {
+  flex: 1 1 auto;
+}
+
+.sidebar .explorer .explorer-content {
+  flex: 1 1 auto;
+  min-height: 0;
+}
