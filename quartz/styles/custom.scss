@@ -23,3 +23,15 @@ a.contact-link {
   flex: 1 1 auto;
   min-height: 0;
 }
+
+// Mobile: the explorer file-tree overlay is absolutely positioned relative to
+// the sticky left sidebar, which sits inside #quartz-body's 1rem side padding.
+// That 16px offset makes the collapsed `translateX(-100vw)` fall 16px short, so
+// the right edge of the tree (open folders re-enable visibility) peeks in on the
+// left while reading an article. Pull it left by 1rem to align with the viewport
+// edge: fully hidden when collapsed, flush (no right overflow) when open.
+@media all and (max-width: 800px) {
+  #quartz-body .explorer .explorer-content {
+    left: -1rem;
+  }
+}

@@ -219,6 +219,7 @@ plugins:
     layout:
       position: left
       priority: 25
+      display: desktop-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
