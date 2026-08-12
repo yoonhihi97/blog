@@ -210,17 +210,19 @@ plugins:
     options:
       links: {}
   - source: github:quartz-community/recent-notes
-    enabled: false # single-column top-nav: sidebar widget not used
+    enabled: true # shown in the home body only (see condition below)
     options:
-      title: Recent Notes
-      limit: 3
+      title: 최신 글
+      limit: 6
       linkToMore: false
       showTags: false
       hideTagPages: true
+      hideFolderPages: true
     layout:
-      position: left
-      priority: 25
-      display: desktop-only
+      position: afterBody
+      priority: 5
+      display: all
+      condition: index-only
   - source: github:quartz-community/spacer
     enabled: false # single-column top-nav: mobile sidebar spacer not needed
     options: {}

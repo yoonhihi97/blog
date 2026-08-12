@@ -259,3 +259,73 @@ a.contact-link {
 .page-listing .tags {
   display: none;
 }
+
+/* =========================================================================
+   Home "최신 글" list — compact single-line list (title + date on one row)
+   ========================================================================= */
+.recent-notes {
+  margin-top: 2rem;
+
+  // section label "최신 글"
+  > h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--gray);
+    margin: 0 0 0.5rem;
+  }
+
+  .recent-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .recent-li {
+    padding: 0.3rem 0;
+  }
+
+  // title + date on one line
+  .recent-li .section {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .recent-li .desc {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .recent-li .desc h3 {
+    font-size: 0.92rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // titles read as normal text, accent only on hover
+  .recent-li a.internal {
+    background: none;
+    padding: 0;
+    color: var(--darkgray);
+    font-weight: 400;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+
+  .recent-li .meta {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    color: var(--gray);
+    font-size: 0.78rem;
+    margin: 0;
+  }
+}
