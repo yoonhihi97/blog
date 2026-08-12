@@ -334,6 +334,10 @@
               "positions": {
                 "type": "object",
                 "description": "Position overrides for this page type"
+              },
+              "template": {
+                "type": "string",
+                "description": "Frame template name for this page type (e.g. default, full-width, minimal, top-nav)"
               }
             }
           },

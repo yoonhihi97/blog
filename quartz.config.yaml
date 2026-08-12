@@ -20,26 +20,27 @@ configuration:
       body: Source Sans Pro
       code: IBM Plex Mono
     colors:
+      # Minimal black/white with a single blue accent (jbee.io-style + Toss blue point)
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#ffffff" # canvas / page background
+        lightgray: "#ececec" # borders, dividers
+        gray: "#999999" # muted / secondary text
+        darkgray: "#2e2e2e" # body text
+        dark: "#111111" # headings / strong text
+        secondary: "#3182f6" # links, accent
+        tertiary: "#1b64da" # link hover (deeper blue)
+        highlight: rgba(49, 130, 246, 0.08) # weak blue tint (link hover bg)
+        textHighlight: "#cfe4ff88"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#111111"
+        lightgray: "#2a2a2a"
+        gray: "#8a8a8a"
+        darkgray: "#cccccc"
+        dark: "#f2f2f2"
+        secondary: "#5a9bff"
+        tertiary: "#87b6ff"
+        highlight: rgba(90, 155, 255, 0.14)
+        textHighlight: "#3182f555"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -138,7 +139,7 @@ plugins:
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
-    enabled: true
+    enabled: false # single-column top-nav layout: no file-tree sidebar
     layout:
       position: left
       priority: 50
@@ -148,7 +149,7 @@ plugins:
       position: right
       priority: 10
   - source: github:quartz-community/search
-    enabled: true
+    enabled: false # single-column top-nav: search omitted (can re-enable later)
     layout:
       position: left
       priority: 20
@@ -187,7 +188,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: github:quartz-community/reader-mode
-    enabled: true
+    enabled: false # single-column top-nav: reader-mode omitted
     layout:
       position: left
       priority: 35
@@ -209,7 +210,7 @@ plugins:
     options:
       links: {}
   - source: github:quartz-community/recent-notes
-    enabled: true
+    enabled: false # single-column top-nav: sidebar widget not used
     options:
       title: Recent Notes
       limit: 3
@@ -221,7 +222,7 @@ plugins:
       priority: 25
       display: desktop-only
   - source: github:quartz-community/spacer
-    enabled: true
+    enabled: false # single-column top-nav: mobile sidebar spacer not needed
     options: {}
     order: 25
     layout:
@@ -261,13 +262,16 @@ layout:
         beforeBody: []
         left: []
         right: []
-    content: {}
+    content:
+      template: top-nav
     folder:
+      template: top-nav
       exclude:
         - reader-mode
       positions:
         right: []
     tag:
+      template: top-nav
       exclude:
         - reader-mode
       positions:

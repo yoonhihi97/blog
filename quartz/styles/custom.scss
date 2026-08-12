@@ -1,6 +1,251 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// Reading measure for the single-column top-nav layout
+$contentWidth: 720px;
+
+/* =========================================================================
+   Fonts — Pretendard (free, Korean-covering, Toss-adjacent)
+   Loaded via @font-face because custom.scss is concatenated after the
+   @layer quartz-base block, where a plain CSS @import would be invalidated.
+   ========================================================================= */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2")
+    format("woff2-variations");
+}
+
+/* custom.scss is unlayered, so these win over the theme's @layer quartz-base
+   definitions of the same variables. One unified family = calm, cohesive look. */
+:root {
+  --pretendard:
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  --titleFont: var(--pretendard);
+  --headerFont: var(--pretendard);
+  --bodyFont: var(--pretendard);
+}
+
+/* =========================================================================
+   Typography & rhythm — clear hierarchy, generous line-height, calm tone
+   ========================================================================= */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  line-height: 1.7;
+}
+
+article {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-top: 2.25rem;
+    margin-bottom: 0.9rem;
+  }
+
+  h1 {
+    font-weight: 700;
+  }
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+}
+
+.page-title,
+.article-title {
+  letter-spacing: -0.02em;
+}
+
+/* =========================================================================
+   Links, quotes, rules, media, code, tables
+   ========================================================================= */
+article a.internal {
+  background-color: var(--highlight);
+  border-radius: 5px;
+  padding: 0 0.15rem;
+  text-decoration: none;
+}
+
+blockquote {
+  border-left: 3px solid var(--secondary);
+  color: var(--darkgray);
+}
+
+hr {
+  border-color: var(--lightgray);
+}
+
+article img {
+  border-radius: 12px;
+}
+
+pre {
+  border-radius: 10px !important;
+  border: 1px solid var(--lightgray);
+}
+
+code {
+  border-radius: 6px;
+}
+
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--highlight);
+  font-weight: 600;
+}
+
+/* =========================================================================
+   Top-nav frame — sticky top bar + single centered column, no sidebars
+   (frame: quartz/components/frames/TopNavFrame.tsx, wired via
+   quartz.config.yaml layout.byPageType.<type>.template = top-nav)
+   ========================================================================= */
+.page[data-frame="top-nav"] > #quartz-body {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+}
+
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--light);
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.topnav-inner {
+  max-width: $contentWidth;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.topnav-brand {
+  flex: 0 0 auto;
+
+  h1,
+  h2,
+  .page-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--dark);
+  }
+}
+
+.topnav-links {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25rem;
+
+  a {
+    color: var(--darkgray);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--dark);
+    }
+
+    &.active {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+  }
+}
+
+.topnav-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+
+  // darkmode toggle sits in a flex group wrapper; keep it tidy in the bar
+  .darkmode {
+    margin: 0;
+  }
+}
+
+/* Single centered content column */
+.page[data-frame="top-nav"] .center.topnav-body {
+  max-width: $contentWidth;
+  min-width: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.page[data-frame="top-nav"] .center.topnav-body .page-header {
+  margin: 2.5rem 0 0 0;
+}
+
+.page[data-frame="top-nav"] footer {
+  max-width: $contentWidth;
+  width: 100%;
+  margin: 2rem auto 3rem;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Mobile: let the top bar breathe / links wrap under the brand */
+@media all and (max-width: 800px) {
+  .topnav-inner {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
+  }
+  .topnav-links {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .topnav-actions {
+    margin-left: auto;
+  }
+  .page[data-frame="top-nav"] .center.topnav-body,
+  .page[data-frame="top-nav"] footer {
+    padding: 0 1rem;
+  }
+}
+
+/* =========================================================================
+   Home page contact icons + list tidy-ups (kept from before)
+   ========================================================================= */
 a.contact-link .external-icon {
   display: none;
 }
@@ -11,27 +256,6 @@ a.contact-link {
   margin-right: 24px;
 }
 
-.recent-notes .tags {
-  display: none;
-}
-
 .page-listing .tags {
   display: none;
-}
-
-.sidebar .explorer .explorer-content {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-// Mobile: the explorer file-tree overlay is absolutely positioned relative to
-// the sticky left sidebar, which sits inside #quartz-body's 1rem side padding.
-// That 16px offset makes the collapsed `translateX(-100vw)` fall 16px short, so
-// the right edge of the tree (open folders re-enable visibility) peeks in on the
-// left while reading an article. Pull it left by 1rem to align with the viewport
-// edge: fully hidden when collapsed, flush (no right overflow) when open.
-@media all and (max-width: 800px) {
-  #quartz-body .explorer .explorer-content {
-    left: -1rem;
-  }
 }
